@@ -14,22 +14,27 @@
 
 package org.yardstickframework.hazelcast;
 
-import java.util.*;
+import java.util.Map;
 
 /**
- * Hazelcast benchmark that performs get operations.
+ * Hazelcast benchmark that performs put and get operations.
  */
-public class HazelcastGetBenchmark extends HazelcastAbstractMapBenchmark {
+public class HazelcastPutGetJcacheBenchmark extends HazelcastAbstractJcacheBenchmark {
     /** */
-    public HazelcastGetBenchmark() {
-        super("map");
+    public HazelcastPutGetJcacheBenchmark() {
+        super("jcache");
     }
 
     /** {@inheritDoc} */
     @Override public boolean test(Map<Object, Object> ctx) throws Exception {
         int key = nextRandom(args.range());
 
-        map.get(key);
+        Object val = cache.get(key);
+
+        if (val != null)
+            key = nextRandom(args.range());
+
+        cache.put(key, new SampleValue(key));
 
         return true;
     }
