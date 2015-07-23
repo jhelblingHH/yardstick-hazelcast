@@ -29,9 +29,6 @@ public class HazelcastPutJcacheBenchmark extends HazelcastAbstractJcacheBenchmar
     @Override public boolean test(Map<Object, Object> ctx) throws Exception {
         int key = nextRandom(args.range());
 
-
-        System.out.println("HazelcastPutJcacheBenchmark cache = "+cache);
-
         cache.put(key, new SampleValue(key));
 
         return true;

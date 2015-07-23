@@ -32,14 +32,10 @@ public abstract class HazelcastAbstractJcacheBenchmark extends HazelcastAbstract
 
     public HazelcastAbstractJcacheBenchmark(String jCacheName) {
         this.jCacheName = jCacheName;
-
-        System.out.println("HazelcastAbstractJcacheBenchmark");
     }
 
     @Override public void setUp(BenchmarkConfiguration cfg) throws Exception {
         super.setUp(cfg);
-
-        System.out.println("HazelcastAbstractJcacheBenchmark setup");
 
         HazelcastInstance hazelcast = this.hazelcast();
         CacheManager cacheManager = getCacheManager(hazelcast);
@@ -52,9 +48,6 @@ public abstract class HazelcastAbstractJcacheBenchmark extends HazelcastAbstract
         } catch (CacheException e) {}
 
         cache = cacheManager.getCache(jCacheName);
-
-
-        System.out.println("HazelcastAbstractJcacheBenchmark cache = "+cache);
     }
 
 
