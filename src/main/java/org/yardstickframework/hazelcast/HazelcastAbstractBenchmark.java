@@ -14,10 +14,16 @@
 
 package org.yardstickframework.hazelcast;
 
+import com.hazelcast.cache.impl.HazelcastServerCachingProvider;
 import com.hazelcast.client.*;
+import com.hazelcast.client.cache.impl.HazelcastClientCachingProvider;
 import com.hazelcast.core.*;
+import com.hazelcast.instance.HazelcastInstanceProxy;
 import org.yardstickframework.*;
 
+
+import javax.cache.CacheManager;
+import javax.cache.spi.CachingProvider;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -28,7 +34,7 @@ import static org.yardstickframework.BenchmarkUtils.*;
  */
 public abstract class HazelcastAbstractBenchmark extends BenchmarkDriverAdapter {
     /** Cache name. */
-    private final String cacheName;
+    private final String mapName;
 
     /** Arguments. */
     protected final HazelcastBenchmarkArguments args = new HazelcastBenchmarkArguments();
@@ -40,10 +46,10 @@ public abstract class HazelcastAbstractBenchmark extends BenchmarkDriverAdapter 
     protected IMap<Object, Object> map;
 
     /**
-     * @param cacheName Cache name.
+     * @param mapName Cache name.
      */
-    protected HazelcastAbstractBenchmark(String cacheName) {
-        this.cacheName = cacheName;
+    protected HazelcastAbstractBenchmark(String mapName) {
+        this.mapName = mapName;
     }
 
     /** {@inheritDoc} */
@@ -62,7 +68,7 @@ public abstract class HazelcastAbstractBenchmark extends BenchmarkDriverAdapter 
         else
             node = new HazelcastNode(args.clientMode(), instance);
 
-        map = node.hazelcast().getMap(cacheName);
+        map = node.hazelcast().getMap(mapName);
 
         assert map != null;
 
@@ -161,4 +167,23 @@ public abstract class HazelcastAbstractBenchmark extends BenchmarkDriverAdapter 
     protected int nextRandom(int min, int max) {
         return ThreadLocalRandom.current().nextInt(max - min) + min;
     }
+
+
+    public static boolean isMember(HazelcastInstance instance) {
+        return instance instanceof HazelcastInstanceProxy;
+    }
+    public static boolean isClient(HazelcastInstance instance) {
+        return ! isMember(instance);
+    }
+
+    public static CacheManager getCacheManager(HazelcastInstance instance){
+        CachingProvider provider;
+        if (isMember(instance)) {
+            provider = HazelcastServerCachingProvider.createCachingProvider(instance);
+        } else {
+            provider = HazelcastClientCachingProvider.createCachingProvider(instance);
+        }
+        return provider.getCacheManager(provider.getDefaultURI(),provider.getDefaultClassLoader(), null);
+    }
+
 }
