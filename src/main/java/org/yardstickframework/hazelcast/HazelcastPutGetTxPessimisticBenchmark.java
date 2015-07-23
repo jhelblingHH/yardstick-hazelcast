@@ -25,7 +25,7 @@ import static org.yardstickframework.BenchmarkUtils.*;
 /**
  * Hazelcast benchmark that performs transactional put and get operations.
  */
-public class HazelcastPutGetTxPessimisticBenchmark extends HazelcastAbstractBenchmark {
+public class HazelcastPutGetTxPessimisticBenchmark extends HazelcastAbstractMapBenchmark {
     /** */
     public HazelcastPutGetTxPessimisticBenchmark() {
         super("map");

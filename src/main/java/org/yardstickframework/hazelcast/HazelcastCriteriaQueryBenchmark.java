@@ -28,7 +28,7 @@ import static org.yardstickframework.BenchmarkUtils.*;
 /**
  * Hazelcast benchmark that performs criteria API.
  */
-public class HazelcastCriteriaQueryBenchmark extends HazelcastAbstractBenchmark {
+public class HazelcastCriteriaQueryBenchmark extends HazelcastAbstractMapBenchmark {
     /** Number of threads that populate the cache for query test. */
     private static final int POPULATE_QUERY_THREAD_NUM = Runtime.getRuntime().availableProcessors() * 2;
 

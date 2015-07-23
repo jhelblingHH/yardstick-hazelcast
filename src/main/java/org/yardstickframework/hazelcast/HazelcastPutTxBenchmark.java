@@ -24,7 +24,7 @@ import static com.hazelcast.transaction.TransactionOptions.TransactionType.*;
 /**
  * Hazelcast benchmark that performs transactional put operations.
  */
-public class HazelcastPutTxBenchmark extends HazelcastAbstractBenchmark {
+public class HazelcastPutTxBenchmark extends HazelcastAbstractMapBenchmark {
     /** */
     public HazelcastPutTxBenchmark() {
         super("map");

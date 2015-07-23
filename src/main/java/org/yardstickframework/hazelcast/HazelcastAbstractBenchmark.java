@@ -15,26 +15,27 @@
 package org.yardstickframework.hazelcast;
 
 import com.hazelcast.cache.impl.HazelcastServerCachingProvider;
-import com.hazelcast.client.*;
+import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.cache.impl.HazelcastClientCachingProvider;
 import com.hazelcast.core.*;
 import com.hazelcast.instance.HazelcastInstanceProxy;
-import org.yardstickframework.*;
-
+import org.yardstickframework.BenchmarkConfiguration;
+import org.yardstickframework.BenchmarkDriverAdapter;
+import org.yardstickframework.BenchmarkUtils;
 
 import javax.cache.CacheManager;
 import javax.cache.spi.CachingProvider;
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.Collection;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ThreadLocalRandom;
 
-import static org.yardstickframework.BenchmarkUtils.*;
+import static org.yardstickframework.BenchmarkUtils.jcommander;
+import static org.yardstickframework.BenchmarkUtils.println;
 
 /**
  * Abstract class for Hazelcast benchmarks.
  */
 public abstract class HazelcastAbstractBenchmark extends BenchmarkDriverAdapter {
-    /** Cache name. */
-    private final String mapName;
 
     /** Arguments. */
     protected final HazelcastBenchmarkArguments args = new HazelcastBenchmarkArguments();
@@ -42,15 +43,7 @@ public abstract class HazelcastAbstractBenchmark extends BenchmarkDriverAdapter 
     /** Node. */
     private HazelcastNode node;
 
-    /** Map. */
-    protected IMap<Object, Object> map;
-
-    /**
-     * @param mapName Cache name.
-     */
-    protected HazelcastAbstractBenchmark(String mapName) {
-        this.mapName = mapName;
-    }
+    protected HazelcastAbstractBenchmark() {}
 
     /** {@inheritDoc} */
     @Override public void setUp(BenchmarkConfiguration cfg) throws Exception {
@@ -68,10 +61,6 @@ public abstract class HazelcastAbstractBenchmark extends BenchmarkDriverAdapter 
         else
             node = new HazelcastNode(args.clientMode(), instance);
 
-        map = node.hazelcast().getMap(mapName);
-
-        assert map != null;
-
         waitForNodes();
     }
 
@@ -88,8 +77,6 @@ public abstract class HazelcastAbstractBenchmark extends BenchmarkDriverAdapter 
 
     /** {@inheritDoc} */
     @Override public void tearDown() throws Exception {
-        map.clear();
-
         if (node != null)
             node.stop();
     }

@@ -14,36 +14,45 @@
 
 package org.yardstickframework.hazelcast;
 
-import com.hazelcast.core.HazelcastInstance;
-import org.yardstickframework.BenchmarkConfiguration;
+import com.hazelcast.cache.impl.HazelcastServerCachingProvider;
+import com.hazelcast.client.*;
+import com.hazelcast.client.cache.impl.HazelcastClientCachingProvider;
+import com.hazelcast.core.*;
+import com.hazelcast.instance.HazelcastInstanceProxy;
+import org.yardstickframework.*;
 
-import javax.cache.Cache;
+
 import javax.cache.CacheManager;
+import javax.cache.spi.CachingProvider;
+import java.util.*;
+import java.util.concurrent.*;
+
+import static org.yardstickframework.BenchmarkUtils.*;
 
 /**
- * Hazelcast benchmark that performs get operations.
+ * Abstract class for Hazelcast benchmarks.
  */
-public abstract class HazelcastAbstractJcacheBenchmark extends HazelcastAbstractBenchmark {
+public abstract class HazelcastAbstractMapBenchmark extends HazelcastAbstractBenchmark {
 
-    private String jCacheName;
-    protected Cache<Object, Object> cache;
+    private final String mapName;
+    protected IMap<Object, Object> map;
 
-    public HazelcastAbstractJcacheBenchmark(String jCacheName) {
-        this.jCacheName = jCacheName;
+    protected HazelcastAbstractMapBenchmark(String mapName) {
+        this.mapName = mapName;
     }
 
+    /** {@inheritDoc} */
     @Override public void setUp(BenchmarkConfiguration cfg) throws Exception {
         super.setUp(cfg);
 
-        HazelcastInstance hazelcast = this.hazelcast();
-        CacheManager cacheManager = getCacheManager(hazelcast);
-        cache = cacheManager.getCache(jCacheName);
+        map = hazelcast().getMap(mapName);
+        assert map != null;
     }
 
 
     /** {@inheritDoc} */
     @Override public void tearDown() throws Exception {
-        cache.clear();
+        map.clear();
         super.tearDown();
     }
 }

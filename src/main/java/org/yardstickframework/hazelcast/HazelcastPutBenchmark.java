@@ -19,7 +19,7 @@ import java.util.*;
 /**
  * Hazelcast benchmark that performs put operations.
  */
-public class HazelcastPutBenchmark extends HazelcastAbstractBenchmark {
+public class HazelcastPutBenchmark extends HazelcastAbstractMapBenchmark {
     /** */
     public HazelcastPutBenchmark() {
         super("map");

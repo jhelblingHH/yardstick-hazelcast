@@ -24,7 +24,7 @@ import java.util.concurrent.*;
 /**
  * Hazelcast benchmark that performs put and query operations.
  */
-public class HazelcastSqlQueryPutBenchmark extends HazelcastAbstractBenchmark {
+public class HazelcastSqlQueryPutBenchmark extends HazelcastAbstractMapBenchmark {
     /** */
     public HazelcastSqlQueryPutBenchmark() {
         super("query");

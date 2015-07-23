@@ -19,7 +19,7 @@ import java.util.*;
 /**
  * Hazelcast benchmark that performs get operations.
  */
-public class HazelcastGetBenchmark extends HazelcastAbstractBenchmark {
+public class HazelcastGetBenchmark extends HazelcastAbstractMapBenchmark {
     /** */
     public HazelcastGetBenchmark() {
         super("map");
