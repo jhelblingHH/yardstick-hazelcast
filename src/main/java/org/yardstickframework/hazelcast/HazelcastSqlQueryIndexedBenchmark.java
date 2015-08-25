@@ -36,7 +36,7 @@ public class HazelcastSqlQueryIndexedBenchmark extends HazelcastAbstractMapBench
 
     /** */
     public HazelcastSqlQueryIndexedBenchmark() {
-        super("query");
+        super("objmap");
     }
 
     /** {@inheritDoc} */

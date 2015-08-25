@@ -49,6 +49,12 @@
         <read-backup-data>true</read-backup-data>
     </map>
 
+    <map name="objmap*">
+        <in-memory-format>OBJECT</in-memory-format>
+        <statistics-enabled>false</statistics-enabled>
+        <read-backup-data>true</read-backup-data>
+    </map>
+
     <map name="query">
         <statistics-enabled>false</statistics-enabled>
 
