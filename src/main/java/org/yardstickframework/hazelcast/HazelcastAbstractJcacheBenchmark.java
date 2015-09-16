@@ -14,13 +14,14 @@
 
 package org.yardstickframework.hazelcast;
 
-import com.hazelcast.config.CacheConfig;
-import com.hazelcast.core.HazelcastInstance;
-import org.yardstickframework.BenchmarkConfiguration;
-
 import javax.cache.Cache;
 import javax.cache.CacheException;
 import javax.cache.CacheManager;
+
+import org.yardstickframework.BenchmarkConfiguration;
+
+import com.hazelcast.config.CacheConfig;
+import com.hazelcast.core.HazelcastInstance;
 
 /**
  * Hazelcast benchmark that performs get operations.
@@ -34,6 +35,8 @@ public abstract class HazelcastAbstractJcacheBenchmark extends HazelcastAbstract
         this.jCacheName = jCacheName;
     }
 
+    protected void init(CacheConfig conf) {}
+
     @Override public void setUp(BenchmarkConfiguration cfg) throws Exception {
         super.setUp(cfg);
 
@@ -42,6 +45,7 @@ public abstract class HazelcastAbstractJcacheBenchmark extends HazelcastAbstract
 
         CacheConfig config = new CacheConfig();
         config.setName(jCacheName);
+        init(config);
 
         try {
             cacheManager.createCache(jCacheName, config);
