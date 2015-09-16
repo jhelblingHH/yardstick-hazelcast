@@ -25,9 +25,14 @@ import com.hazelcast.config.InMemoryFormat;
  * Hazelcast benchmark that performs put and get operations.
  */
 public class HazelcastPutGetJcacheHDBenchmark extends HazelcastAbstractJcacheBenchmark {
-    /** */
+    private static final int MAX_BYTES = 75_000;
+    private final byte[][] byteArrays = new byte[10][];
+
     public HazelcastPutGetJcacheHDBenchmark() {
         super("jcache-hd");
+        for (int i = 0, s = MAX_BYTES; i < byteArrays.length; i++, s /= 2) {
+            byteArrays[i] = new byte[s];
+        }
     }
 
     @Override
@@ -51,8 +56,7 @@ public class HazelcastPutGetJcacheHDBenchmark extends HazelcastAbstractJcacheBen
         if (val != null)
             key = nextRandom(args.range());
 
-        byte[] bytes = new byte[key / 20];
-        cache.put(key, new BigValue(key, bytes));
+        cache.put(key, new BigValue(key, byteArrays[nextRandom(byteArrays.length)]));
 
         return true;
     }
