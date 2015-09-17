@@ -1,3 +1,8 @@
+
+xz
+
+
+
 #
 # Contains all benchmarks for:
 # - ATOMIC operations
@@ -39,10 +44,10 @@ BENCHMARK_LABEL=hazelcast
 # BENCHMARK_WRITER=
 
 # Comma-separated list of the hosts to run BenchmarkServers on. 2 nodes on local host are enabled by default.
-SERVER_HOSTS=10.212.40.101,10.212.40.102,10.212.40.103,10.212.40.104,10.212.40.105,10.212.40.106,10.212.40.108
+SERVER_HOSTS=10.212.40.101,10.212.40.102,10.212.40.103
 
 # Comma-separated list of the hosts to run BenchmarkDrivers on. 1 node on local host is enabled by default.
-DRIVER_HOSTS=10.212.40.109
+DRIVER_HOSTS=10.212.40.104
 
 # Remote username.
 # REMOTE_USER=
