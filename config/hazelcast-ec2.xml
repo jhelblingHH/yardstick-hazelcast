@@ -3,8 +3,6 @@
            xmlns="http://www.hazelcast.com/schema/config"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <!--license-key-->
-
     <group>
         <name>yardstick</name>
     </group>
@@ -40,5 +38,9 @@
         <statistics-enabled>false</statistics-enabled>
         <read-backup-data>true</read-backup-data>
     </map>
+
+    <properties>
+      <property name="hazelcast.slow.operation.detector.stacktrace.logging.enabled">true</property>
+    </properties>
 
 </hazelcast>
