@@ -46,7 +46,7 @@ public abstract class HazelcastAbstractJcacheBenchmark extends HazelcastAbstract
 
         CacheConfig config = cache.getConfiguration(CacheConfig.class);
 
-        System.out.println(this.getClass().getSimpleName() + " cache "+cache.getName()+" config "+config);
+        System.out.println(this.getClass().getSimpleName() + " cache "+cache.getName()+" config "+config.getInMemoryFormat());
     }
 
 
