@@ -26,24 +26,13 @@ import com.hazelcast.config.InMemoryFormat;
  */
 public class HazelcastPutGetJcacheHDBenchmark extends HazelcastAbstractJcacheBenchmark {
     private static final int MAX_BYTES = 75_000;
-    private final byte[][] byteArrays = new byte[10][];
+    private static final byte[][] byteArrays = new byte[10][];
 
     public HazelcastPutGetJcacheHDBenchmark() {
         super("jcache-hd");
         for (int i = 0, s = MAX_BYTES; i < byteArrays.length; i++, s /= 2) {
             byteArrays[i] = new byte[s];
         }
-    }
-
-    @Override
-    protected void init(com.hazelcast.config.CacheConfig conf) {
-        conf.setInMemoryFormat(InMemoryFormat.NATIVE);
-        EvictionConfig eviction = conf.getEvictionConfig();
-        eviction
-                .setEvictionPolicy(EvictionPolicy.RANDOM)
-                .setMaximumSizePolicy(MaxSizePolicy.FREE_NATIVE_MEMORY_PERCENTAGE)
-                .setSize(95);
-
     }
 
     /** {@inheritDoc} */

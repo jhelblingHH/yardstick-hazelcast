@@ -23,12 +23,19 @@
         <size value="1" unit="GIGABYTES"/>
     </native-memory>
 
-    <map name="map">
+    <cache name="nat*">
+        <backup-count>1</backup-count>
+        <async-backup-count>0</async-backup-count>
+        <in-memory-format>NATIVE</in-memory-format>
+        <eviction size="95" max-size-policy="USED_NATIVE_MEMORY_PERCENTAGE" eviction-policy="LRU" />
+    </cache>
+
+    <map name="map*">
         <statistics-enabled>false</statistics-enabled>
         <read-backup-data>true</read-backup-data>
     </map>
 
-    <map name="query">
+    <map name="query*">
         <statistics-enabled>false</statistics-enabled>
         <read-backup-data>true</read-backup-data>
     </map>

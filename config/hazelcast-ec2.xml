@@ -23,12 +23,18 @@
     </properties>
 -->
 
-    <map name="map">
+    <cache name="jcache*">
+        <backup-count>1</backup-count>
+        <async-backup-count>0</async-backup-count>
+        <in-memory-format>BINARY</in-memory-format>
+    </cache>
+
+    <map name="map*">
         <statistics-enabled>false</statistics-enabled>
         <read-backup-data>true</read-backup-data>
     </map>
 
-    <map name="query">
+    <map name="query*">
         <statistics-enabled>false</statistics-enabled>
         <read-backup-data>true</read-backup-data>
     </map>
