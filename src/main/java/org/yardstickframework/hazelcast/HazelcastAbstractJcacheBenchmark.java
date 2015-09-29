@@ -43,6 +43,10 @@ public abstract class HazelcastAbstractJcacheBenchmark extends HazelcastAbstract
         CacheManager cacheManager = getCacheManager(hazelcast);
 
         cache = cacheManager.getCache(jCacheName);
+
+        CacheConfig config = cache.getConfiguration(CacheConfig.class);
+
+        System.out.println(this.getClass().getSimpleName() + " cache "+cache.getName()+" config "+config);
     }
 
 
