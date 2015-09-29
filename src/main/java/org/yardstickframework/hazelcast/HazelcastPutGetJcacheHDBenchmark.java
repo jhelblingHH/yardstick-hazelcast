@@ -29,7 +29,7 @@ public class HazelcastPutGetJcacheHDBenchmark extends HazelcastAbstractJcacheBen
     private static final byte[][] byteArrays = new byte[10][];
 
     public HazelcastPutGetJcacheHDBenchmark() {
-        super("jcache-hd");
+        super("native0");
         for (int i = 0, s = MAX_BYTES; i < byteArrays.length; i++, s /= 2) {
             byteArrays[i] = new byte[s];
         }
