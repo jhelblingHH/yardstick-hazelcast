@@ -51,6 +51,9 @@ public class HazelcastBenchmarkArguments {
     @Parameter(names = {"-rb", "--readBackups"}, description = "Read backups")
     private boolean readBackups = false;
 
+    @Parameter(names = {"-cn", "--cacheName"}, description = "cache name")
+    private String cacheName = null;
+
     /**
      * @return Sync backups.
      */
@@ -105,6 +108,10 @@ public class HazelcastBenchmarkArguments {
      */
     public String clientConfiguration() {
         return hzClientCfg;
+    }
+
+    public String getCacheName() {
+        return cacheName;
     }
 
     /**

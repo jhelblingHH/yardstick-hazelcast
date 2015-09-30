@@ -20,6 +20,7 @@ import com.hazelcast.config.EvictionConfig;
 import com.hazelcast.config.EvictionConfig.MaxSizePolicy;
 import com.hazelcast.config.EvictionPolicy;
 import com.hazelcast.config.InMemoryFormat;
+import org.yardstickframework.BenchmarkConfiguration;
 
 /**
  * Hazelcast benchmark that performs put and get operations.
@@ -28,16 +29,17 @@ public class HazelcastPutGetJcacheHDBenchmark extends HazelcastAbstractJcacheBen
     private static final int MAX_BYTES = 75_000;
     private static final byte[][] byteArrays = new byte[10][];
 
-    public HazelcastPutGetJcacheHDBenchmark() {
-        super("native0");
+
+    @Override public void setUp(final BenchmarkConfiguration cfg) throws Exception {
+        super.setUp(cfg);
+
         for (int i = 0, s = MAX_BYTES; i < byteArrays.length; i++, s /= 2) {
             byteArrays[i] = new byte[s];
         }
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public boolean test(Map<Object, Object> ctx) throws Exception {
+        /** {@inheritDoc} */
+    @Override public boolean test(Map<Object, Object> ctx) throws Exception {
         int key = nextRandom(args.range());
 
         Object val = cache.get(key);

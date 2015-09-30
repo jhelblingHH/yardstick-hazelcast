@@ -30,6 +30,21 @@
         <eviction size="95" max-size-policy="USED_NATIVE_MEMORY_PERCENTAGE" eviction-policy="LRU" />
     </cache>
 
+    <cache name="evictObj*">
+        <backup-count>1</backup-count>
+        <async-backup-count>0</async-backup-count>
+        <in-memory-format>OBJECT</in-memory-format>
+        <eviction size="1000" max-size-policy="ENTRY_COUNT" eviction-policy="LRU" />
+    </cache>
+
+    <cache name="evictBin*">
+        <backup-count>1</backup-count>
+        <async-backup-count>0</async-backup-count>
+        <in-memory-format>BINARY</in-memory-format>
+        <eviction size="1000" max-size-policy="ENTRY_COUNT" eviction-policy="LRU" />
+    </cache>
+
+
     <map name="map*">
         <statistics-enabled>false</statistics-enabled>
         <read-backup-data>true</read-backup-data>
