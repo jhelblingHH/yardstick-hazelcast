@@ -27,7 +27,7 @@ import static com.hazelcast.transaction.TransactionOptions.TransactionType.TWO_P
  * Hazelcast benchmark that performs getAll and putAll operations into pessimistic
  * transaction (get and put's in for-loop).
  */
-public class HazelcastGetAllPutAllTxPessimisticBenchmark extends HazelcastAbstractBenchmark {
+public class HazelcastGetAllPutAllTxPessimisticBenchmark extends HazelcastAbstractMapBenchmark {
     /** */
     public HazelcastGetAllPutAllTxPessimisticBenchmark() {
         super("map");
