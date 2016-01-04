@@ -58,7 +58,7 @@ public class HazelcastTransactionalWriteReadBenchmark extends HazelcastFailoverA
 
         tCtx.beginTransaction();
 
-        TransactionalMap<String, Long> txMap = tCtx.getMap(cacheName);
+        TransactionalMap<String, Long> txMap = tCtx.getMap(mapName);
 
         try {
             Map<String, Long> locMap = new LinkedHashMap<>();

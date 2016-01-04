@@ -43,7 +43,10 @@ public abstract class HazelcastAbstractBenchmark extends BenchmarkDriverAdapter 
     /** Node. */
     private HazelcastNode node;
 
-    protected HazelcastAbstractBenchmark() {}
+    /**
+     * @param cacheName Cache name.
+     */
+
 
     /** {@inheritDoc} */
     @Override public void setUp(BenchmarkConfiguration cfg) throws Exception {
@@ -77,8 +80,6 @@ public abstract class HazelcastAbstractBenchmark extends BenchmarkDriverAdapter 
 
     /** {@inheritDoc} */
     @Override public void tearDown() throws Exception {
-        map.clear();
-        
         if (node != null)
             node.stop();
     }

@@ -34,7 +34,7 @@ import static org.yardstickframework.BenchmarkUtils.*;
  */
 public abstract class HazelcastAbstractMapBenchmark extends HazelcastAbstractBenchmark {
 
-    private final String mapName;
+    public final String mapName;
     protected IMap<Object, Object> map;
 
     protected HazelcastAbstractMapBenchmark(String mapName) {

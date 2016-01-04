@@ -30,8 +30,6 @@ public abstract class HazelcastAbstractJcacheBenchmark extends HazelcastAbstract
     private String jCacheName = null;
     protected Cache<Object, Object> cache = null;
 
-    public HazelcastAbstractJcacheBenchmark() {}
-
     public HazelcastAbstractJcacheBenchmark(String jCacheName) {
         this.jCacheName = jCacheName;
     }
@@ -53,7 +51,6 @@ public abstract class HazelcastAbstractJcacheBenchmark extends HazelcastAbstract
 
         System.out.println(this.getClass().getSimpleName() + " cache "+cache.getName()+" config "+config.getInMemoryFormat());
     }
-
 
     /** {@inheritDoc} */
     @Override public void tearDown() throws Exception {

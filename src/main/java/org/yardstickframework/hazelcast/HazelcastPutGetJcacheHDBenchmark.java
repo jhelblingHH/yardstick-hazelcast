@@ -29,6 +29,9 @@ public class HazelcastPutGetJcacheHDBenchmark extends HazelcastAbstractJcacheBen
     private static final int MAX_BYTES = 75_000;
     private static final byte[][] byteArrays = new byte[10][];
 
+    public HazelcastPutGetJcacheHDBenchmark() {
+        super(null);
+    }
 
     @Override public void setUp(final BenchmarkConfiguration cfg) throws Exception {
         super.setUp(cfg);

@@ -32,12 +32,13 @@ import java.util.logging.Level;
 import org.yardstickframework.BenchmarkConfiguration;
 import org.yardstickframework.BenchmarkUtils;
 import org.yardstickframework.hazelcast.HazelcastAbstractBenchmark;
+import org.yardstickframework.hazelcast.HazelcastAbstractMapBenchmark;
 
 import static org.yardstickframework.BenchmarkUtils.println;
 
 /**
  */
-public abstract class HazelcastFailoverAbstractBenchmark extends HazelcastAbstractBenchmark {
+public abstract class HazelcastFailoverAbstractBenchmark extends HazelcastAbstractMapBenchmark {
     /** */
     private static final AtomicBoolean restarterStarted = new AtomicBoolean();
 
