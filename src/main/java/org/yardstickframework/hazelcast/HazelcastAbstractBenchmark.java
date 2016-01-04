@@ -77,6 +77,8 @@ public abstract class HazelcastAbstractBenchmark extends BenchmarkDriverAdapter 
 
     /** {@inheritDoc} */
     @Override public void tearDown() throws Exception {
+        map.clear();
+        
         if (node != null)
             node.stop();
     }

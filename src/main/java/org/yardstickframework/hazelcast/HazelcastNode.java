@@ -73,11 +73,13 @@ public class HazelcastNode implements BenchmarkServer {
             configure(args, hzCfg, "map", false);
             configure(args, hzCfg, "query", true);
 
+            println(cfg, "Starting Hazelcast with configuration: " + hzCfg);
+
             hz = Hazelcast.newHazelcastInstance(hzCfg);
 
             println(cfg, "Hazelcast member started.");
-            println(cfg, "Hazelcast config: [" + args + "].");
-            println(cfg, "Hazelcast benchmark config: [" + cfg + "].");
+            println(cfg, "Hazelcast benchmark arguments: " + args);
+            println(cfg, "Hazelcast benchmark config: " + cfg);
         }
 
         assert hz != null;
@@ -95,8 +97,8 @@ public class HazelcastNode implements BenchmarkServer {
         MapConfig mapCfg = cfg.getMapConfig(name);
 
         if (idx) {
-            mapCfg.addMapIndexConfig(new MapIndexConfig("id", false));
-            mapCfg.addMapIndexConfig(new MapIndexConfig("orgId", false));
+            mapCfg.addMapIndexConfig(new MapIndexConfig("id", true));
+            mapCfg.addMapIndexConfig(new MapIndexConfig("orgId", true));
             mapCfg.addMapIndexConfig(new MapIndexConfig("salary", true));
         }
 

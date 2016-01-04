@@ -15,16 +15,26 @@
 package org.yardstickframework.hazelcast;
 
 import com.hazelcast.query.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.yardstickframework.*;
 import org.yardstickframework.hazelcast.querymodel.*;
 
 import java.util.*;
 import java.util.concurrent.*;
 
+import static org.yardstickframework.BenchmarkUtils.println;
+
 /**
  * Hazelcast benchmark that performs put and query operations.
  */
 public class HazelcastSqlQueryPutBenchmark extends HazelcastAbstractMapBenchmark {
+    /** */
+    private AtomicInteger putCnt = new AtomicInteger();
+
+    /** */
+    private AtomicInteger qryCnt = new AtomicInteger();
+
+
     /** */
     public HazelcastSqlQueryPutBenchmark() {
         super("query");
@@ -44,17 +54,24 @@ public class HazelcastSqlQueryPutBenchmark extends HazelcastAbstractMapBenchmark
 
             double maxSalary = salary + 1000;
 
-            Collection<Person> persons = executeQuery(salary, maxSalary);
+            Collection<Map.Entry<Integer, Person>> persons = executeQuery(salary, maxSalary);
 
-            for (Person p : persons)
+            for (Map.Entry<Integer, Person> entry : persons) {
+                Person p = entry.getValue();
+
                 if (p.getSalary() < salary || p.getSalary() > maxSalary)
                     throw new Exception("Invalid person retrieved [min=" + salary + ", max=" + maxSalary +
                         ", person=" + p + ']');
+            }
+
+            qryCnt.incrementAndGet();
         }
         else {
             int i = rnd.nextInt(args.range());
 
             map.put(i, new Person(i, "firstName" + i, "lastName" + i, i * 1000));
+
+            putCnt.incrementAndGet();
         }
 
         return true;
@@ -67,8 +84,15 @@ public class HazelcastSqlQueryPutBenchmark extends HazelcastAbstractMapBenchmark
      * @throws Exception If failed.
      */
     @SuppressWarnings("unchecked")
-    private Collection<Person> executeQuery(double minSalary, double maxSalary) throws Exception {
-        return (Collection<Person>)(Collection<?>)map.values(
+    private Collection<Map.Entry<Integer, Person>> executeQuery(double minSalary, double maxSalary) throws Exception {
+        return (Collection<Map.Entry<Integer, Person>>)(Collection<?>)map.entrySet(
             new SqlPredicate("salary >= " + minSalary + " and salary <= " + maxSalary));
+    }
+
+    /** {@inheritDoc} */
+    @Override public void tearDown() throws Exception {
+        println(cfg, "Finished sql query put benchmark [putCnt=" + putCnt.get() + ", qryCnt=" + qryCnt.get() + ']');
+
+        super.tearDown();
     }
 }

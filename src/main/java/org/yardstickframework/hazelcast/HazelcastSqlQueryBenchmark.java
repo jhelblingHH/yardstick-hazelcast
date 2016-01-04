@@ -71,9 +71,11 @@ public class HazelcastSqlQueryBenchmark extends HazelcastAbstractMapBenchmark {
 
         double maxSalary = salary + 1000;
 
-        Collection<Person> persons = executeQuery(salary, maxSalary);
+        Collection<Map.Entry<Integer, Person>> persons = executeQuery(salary, maxSalary);
 
-        for (Person p : persons) {
+        for (Map.Entry<Integer, Person> entry : persons) {
+            Person p = entry.getValue();
+
             if (p.getSalary() < salary || p.getSalary() > maxSalary)
                 throw new Exception("Invalid person retrieved [min=" + salary + ", max=" + maxSalary +
                     ", person=" + p + ']');
@@ -89,8 +91,8 @@ public class HazelcastSqlQueryBenchmark extends HazelcastAbstractMapBenchmark {
      * @throws Exception If failed.
      */
     @SuppressWarnings("unchecked")
-    private Collection<Person> executeQuery(double minSalary, double maxSalary) throws Exception {
-        return (Collection<Person>)(Collection<?>)map.values(
+    private Collection<Map.Entry<Integer, Person>> executeQuery(double minSalary, double maxSalary) throws Exception {
+        return (Collection<Map.Entry<Integer, Person>>)(Collection<?>)map.entrySet(
             new SqlPredicate("salary >= " + minSalary + " and salary <= " + maxSalary));
     }
 }

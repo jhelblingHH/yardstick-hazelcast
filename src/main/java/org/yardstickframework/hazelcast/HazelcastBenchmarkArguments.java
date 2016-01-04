@@ -51,6 +51,26 @@ public class HazelcastBenchmarkArguments {
     @Parameter(names = {"-rb", "--readBackups"}, description = "Read backups")
     private boolean readBackups = false;
 
+    /** */
+    @Parameter(names = {"-bs", "--batchSize"}, description = "Batch size")
+    private int batch = 500;
+
+    /** */
+    @Parameter(names = {"-rd", "--restartdelay"}, description = "Restart delay in seconds")
+    private int restartDelay = 20;
+
+    /** */
+    @Parameter(names = {"-rs", "--restartsleep"}, description = "Restart sleep in seconds")
+    private int restartSleep = 2;
+
+    /** */
+    @Parameter(names = {"-kc", "--keysCount"}, description = "Count of keys")
+    private int keysCnt = 5;
+
+    /** */
+    @Parameter(names = {"-td", "--txDurability"}, description = "Transaction durability")
+    private int txDurability = 1;
+
     @Parameter(names = {"-cn", "--cacheName"}, description = "cache name")
     private String cacheName = null;
 
@@ -97,6 +117,13 @@ public class HazelcastBenchmarkArguments {
     }
 
     /**
+     * @return Batch size.
+     */
+    public int batch() {
+        return batch;
+    }
+
+    /**
      * @return Configuration file.
      */
     public String configuration() {
@@ -112,6 +139,34 @@ public class HazelcastBenchmarkArguments {
 
     public String getCacheName() {
         return cacheName;
+    }
+
+    /**
+     * @return Delay in second which used in nodes restart algorithm.
+     */
+    public int restartDelay() {
+        return restartDelay;
+    }
+
+    /**
+     * @return Sleep in second which used in nodes restart algorithm.
+     */
+    public int restartSleep() {
+        return restartSleep;
+    }
+
+    /**
+     * @return Keys count.
+     */
+    public int keysCount() {
+        return keysCnt;
+    }
+
+    /**
+     * @return Transaction durability.
+     */
+    public int txDurability() {
+        return txDurability;
     }
 
     /**
