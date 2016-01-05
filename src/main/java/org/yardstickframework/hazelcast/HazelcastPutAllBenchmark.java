@@ -21,7 +21,7 @@ import java.util.TreeMap;
 /**
  * Hazelcast benchmark that performs putAll operations.
  */
-public class HazelcastPutAllBenchmark extends HazelcastAbstractMapBenchmark{
+public class HazelcastPutAllBenchmark extends HazelcastAbstractMapBenchmark {
     /** */
     public HazelcastPutAllBenchmark() {
         super("map");

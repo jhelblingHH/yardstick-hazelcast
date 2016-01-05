@@ -17,7 +17,7 @@
         </join>
     </network>
 
-<!-- a
+<!--
     <properties>
        <property name="invocation.stillrunning.timeout">20</property>
     </properties>

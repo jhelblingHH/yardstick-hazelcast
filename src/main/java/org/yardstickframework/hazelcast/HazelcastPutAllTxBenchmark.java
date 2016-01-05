@@ -26,7 +26,7 @@ import static com.hazelcast.transaction.TransactionOptions.TransactionType.TWO_P
 /**
  * Hazelcast benchmark that performs putAll operations (put's in for-loop).
  */
-public class HazelcastPutAllTxBenchmark extends HazelcastAbstractMapBenchmark{
+public class HazelcastPutAllTxBenchmark extends HazelcastAbstractMapBenchmark {
     /** */
     public HazelcastPutAllTxBenchmark() {
         super("map");
