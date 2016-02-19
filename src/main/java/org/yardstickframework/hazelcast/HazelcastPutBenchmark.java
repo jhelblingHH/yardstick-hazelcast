@@ -29,7 +29,7 @@ public class HazelcastPutBenchmark extends HazelcastAbstractMapBenchmark {
     @Override public boolean test(Map<Object, Object> ctx) throws Exception {
         int key = nextRandom(args.range());
 
-        map.put(key, new SampleValue(key));
+        map.set(key, new SampleValue(key));
 
         return true;
     }
