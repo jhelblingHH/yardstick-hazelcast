@@ -49,8 +49,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <yardstick.version>RELEASE</yardstick.version>
-        <hazelcast.version>3.5.2</hazelcast.version>
-        <jsr107.api.version>1.0.0</jsr107.api.version>
+        <hazelcast.version>3.6</hazelcast.version>
     </properties>
 
     <dependencies>
@@ -80,20 +79,14 @@
 
         <dependency>
             <groupId>com.hazelcast</groupId>
-            <artifactId>hazelcast</artifactId>
+            <artifactId>hazelcast-all</artifactId>
             <version>${hazelcast.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.hazelcast</groupId>
-            <artifactId>hazelcast-client-new</artifactId>
+            <artifactId>hazelcast-client</artifactId>
             <version>${hazelcast.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.cache</groupId>
-            <artifactId>cache-api</artifactId>
-            <version>${jsr107.api.version}</version>
         </dependency>
 
         <dependency>
