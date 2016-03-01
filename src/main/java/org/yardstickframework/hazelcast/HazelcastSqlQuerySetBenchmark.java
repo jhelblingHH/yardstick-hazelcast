@@ -27,7 +27,7 @@ import static org.yardstickframework.BenchmarkUtils.println;
 /**
  * Hazelcast benchmark that performs put and query operations.
  */
-public class HazelcastSqlQuerySetBenchmark extends HazelcastAbstractBenchmark {
+public class HazelcastSqlQuerySetBenchmark extends HazelcastAbstractMapBenchmark {
     /** */
     private AtomicInteger putCnt = new AtomicInteger();
 

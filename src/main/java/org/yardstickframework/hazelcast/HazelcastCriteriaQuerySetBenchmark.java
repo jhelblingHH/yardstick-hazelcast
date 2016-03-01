@@ -24,7 +24,7 @@ import org.yardstickframework.hazelcast.querymodel.Person;
 /**
  * Hazelcast benchmark that performs put and query operations.
  */
-public class HazelcastCriteriaQuerySetBenchmark extends HazelcastAbstractBenchmark {
+public class HazelcastCriteriaQuerySetBenchmark extends HazelcastAbstractMapBenchmark {
 
     /** */
     public HazelcastCriteriaQuerySetBenchmark() {

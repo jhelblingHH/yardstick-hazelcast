@@ -33,7 +33,7 @@ import static org.yardstickframework.BenchmarkUtils.println;
 /**
  * Hazelcast benchmark that performs transactional put and get operations.
  */
-public class HazelcastAccountTxBenchmark extends HazelcastAbstractBenchmark {
+public class HazelcastAccountTxBenchmark extends HazelcastAbstractMapBenchmark {
     /** Number of threads that populate the cache for query test. */
     private static final int POPULATE_THREAD_NUM = Runtime.getRuntime().availableProcessors() * 2;
 

@@ -19,9 +19,9 @@ import java.util.Map;
 /**
  * Hazelcast benchmark that performs put operations.
  */
-public class HazelcastPutJcacheBenchmark extends HazelcastAbstractJcacheBenchmark {
+public class HazelcastPutJCacheBenchmark extends HazelcastAbstractJCacheBenchmark {
     /** */
-    public HazelcastPutJcacheBenchmark() {
+    public HazelcastPutJCacheBenchmark() {
         super("jcache");
     }
 

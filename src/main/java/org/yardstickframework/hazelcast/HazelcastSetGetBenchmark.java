@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * Hazelcast benchmark that performs put and get operations.
  */
-public class HazelcastSetGetBenchmark extends HazelcastAbstractBenchmark {
+public class HazelcastSetGetBenchmark extends HazelcastAbstractMapBenchmark {
     /** */
     public HazelcastSetGetBenchmark() {
         super("map");

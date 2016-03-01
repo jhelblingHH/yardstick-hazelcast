@@ -14,20 +14,8 @@
 
 package org.yardstickframework.hazelcast;
 
-import com.hazelcast.cache.impl.HazelcastServerCachingProvider;
-import com.hazelcast.client.*;
-import com.hazelcast.client.cache.impl.HazelcastClientCachingProvider;
-import com.hazelcast.core.*;
-import com.hazelcast.instance.HazelcastInstanceProxy;
-import org.yardstickframework.*;
-
-
-import javax.cache.CacheManager;
-import javax.cache.spi.CachingProvider;
-import java.util.*;
-import java.util.concurrent.*;
-
-import static org.yardstickframework.BenchmarkUtils.*;
+import com.hazelcast.core.IMap;
+import org.yardstickframework.BenchmarkConfiguration;
 
 /**
  * Abstract class for Hazelcast benchmarks.
@@ -38,11 +26,15 @@ public abstract class HazelcastAbstractMapBenchmark extends HazelcastAbstractBen
     protected IMap<Object, Object> map;
 
     protected HazelcastAbstractMapBenchmark(String mapName) {
+        super(mapName);
         this.mapName = mapName;
     }
 
-    /** {@inheritDoc} */
-    @Override public void setUp(BenchmarkConfiguration cfg) throws Exception {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setUp(BenchmarkConfiguration cfg) throws Exception {
         super.setUp(cfg);
 
         map = hazelcast().getMap(mapName);
@@ -50,8 +42,11 @@ public abstract class HazelcastAbstractMapBenchmark extends HazelcastAbstractBen
     }
 
 
-    /** {@inheritDoc} */
-    @Override public void tearDown() throws Exception {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void tearDown() throws Exception {
         map.clear();
         super.tearDown();
     }

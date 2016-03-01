@@ -25,12 +25,13 @@ import javax.cache.CacheManager;
 /**
  * Hazelcast benchmark that performs get operations.
  */
-public abstract class HazelcastAbstractJcacheBenchmark extends HazelcastAbstractBenchmark {
+public abstract class HazelcastAbstractJCacheBenchmark extends HazelcastAbstractBenchmark {
 
     private String jCacheName;
     protected Cache<Object, Object> cache;
 
-    public HazelcastAbstractJcacheBenchmark(String jCacheName) {
+    public HazelcastAbstractJCacheBenchmark(String jCacheName) {
+        super(jCacheName);
         this.jCacheName = jCacheName;
     }
 

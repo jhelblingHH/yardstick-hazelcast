@@ -22,7 +22,7 @@ import java.util.TreeSet;
 /**
  * Hazelcast benchmark that performs put and get operations.
  */
-public class HazelcastPutGetBatchBenchmark extends HazelcastAbstractBenchmark {
+public class HazelcastPutGetBatchBenchmark extends HazelcastAbstractMapBenchmark {
     /** */
     public HazelcastPutGetBatchBenchmark() {
         super("map");
