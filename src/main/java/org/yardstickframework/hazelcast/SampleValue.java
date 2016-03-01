@@ -27,7 +27,7 @@ public class SampleValue implements IdentifiedDataSerializable{
     /** */
     private int id;
 
-    public static int sampleValueSize=1001;
+    public static int sampleValueSize=1;
     private byte[] value = new byte[sampleValueSize];
 
 
